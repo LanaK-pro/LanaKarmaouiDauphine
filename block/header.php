@@ -27,7 +27,15 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                               <li class="nav-item">
-                                    <a class="nav-link" href="http://localhost:8888/php-procedural/exam/login.php">Mon espace</a>
+
+                                    <?php
+                                    // Bouton de connection se montre juste si aucun utilisateur n'est connecté
+                                    if (!session_start()) {
+
+                                          echo "<a class='nav-link' href='http://localhost:8888/php-procedural/exam/login.php'>Se connecter</a>";
+                                    }
+
+                                    ?>
                               </li>
                         </ul>
                   </div>

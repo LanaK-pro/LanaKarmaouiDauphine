@@ -13,6 +13,13 @@
     <?php
     include_once("../block/header.php");
 
+    // si l'utilisateur n'est pas connecté avec Jose le redirige
+
+    if (!isset($_SESSION["jose"])) {
+        header("Location: http://localhost:8888/php-procedural/exam/index.php");
+    }
+
+
     echo ("<h1 class='text-center'>" . $title . "</h1>");
 
     ?>

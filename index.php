@@ -18,14 +18,27 @@ $passHash = password_hash("bove123", PASSWORD_DEFAULT);
 <h1>Bienvenue</h1>
 
 <?php
-
-if (session_start()) {
+//Message de bienvenue pour tous les utilisateurs connecté
+if (isset($_SESSION)) {
     echo ("Vous êtes connecté en tant que" . " " . $_SESSION['username']);
+    echo "<br> <a href='logout.php' class='btn btn-danger btn-sm'>Déconnexion</a>
+    ";
 }
+// Je comprends pas pourquoi il se montre toujours alors que lui dit bien de ce montré que quand on est connecté en session
 
+
+// Lien de deconnexion, et création d'article accessible que lorsque l'utilisateur jose (admin) est connecté
+if ($_SESSION['username'] = 'jose') {
+    echo "<a href='http://localhost:8888/php-procedural/exam/admin/addArticle.php' type='button' class='btn btn-dark m-5 '>Crée un article</a>
+    ";
+    echo ("Vous êtes connecté en tant que" . " " . $_SESSION['username']);
+    echo "<br> <a href='logout.php' class='btn btn-danger btn-sm'>Déconnexion</a>
+    ";
+}
 ?>
 <br>
-<a href="http://localhost:8888/php-procedural/exam/admin/addArticle.php" type="button" class="btn btn-dark m-5 ">Crée un article</a>
+
+
 
 
 
