@@ -10,6 +10,8 @@
 <body>
 
     <?php
+    // Lien a la base de données 
+    require_once("../Exam/utils/databaseManager.php");
     $title = "Dauphine";
 
     include_once("block/header.php");
@@ -44,7 +46,7 @@
             session_start();
             $_SESSION["username"] = $_POST["username"];
 
-            header("Location: https://localhost/pokedex/admin/index.php");
+            header("Location: http://localhost:8888/php-procedural/exam/");
         } else {
             $errors["global"] = "Identifiants invalides";
         }
@@ -55,7 +57,7 @@
 
 
     ?>
-    // Formulaire de connection
+    <!--Formulaire de connection--->
 
     <div class="container">
 
@@ -75,7 +77,7 @@
             }
             ?>
 
-            <input type="submit" value="Valider">
+            <input type="submit" value="Valider" class="btn btn-primary">
         </form>
 
     </div>
