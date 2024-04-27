@@ -27,9 +27,9 @@ $pdo = connectDB();
 $annonces = findAllArticles($pdo);
 
 
-//Message de bienvenue pour tous les utilisateurs connecté
+//Message de bienvenue pour tous les utilisateurs non connecté
 if (!isset($_SESSION)) {
-    echo ("Connectez-vous");
+    echo ("<a href='login.php'>Connectez-vous</a>");
 }
 // Je comprends pas pourquoi il se montre toujours alors que lui dit bien de ce montré que quand on est connecté en session
 
@@ -50,8 +50,10 @@ if ($_SESSION['username'] = 'jose') {
         <input type='hidden' name='data' value='your_data'>
          <button  class='btn btn-danger my-3 ' type='submit'>Supprimé un article</button>
         </form>";
-    echo "<br> <a href='logout.php' class='btn btn-secondary btn-sm my-3'>Déconnexion</a>
-    ";
+    echo "<form action='http://localhost:8888/php-procedural/exam/logout.php' method='post'>
+        <input type='hidden' name='data' value='your_data'>
+         <button  class='btn btn-secondary my-3 ' type='submit'>Déconnexion</button>
+        </form>";
 }
 ?>
 
