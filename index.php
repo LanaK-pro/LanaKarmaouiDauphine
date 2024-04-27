@@ -28,7 +28,7 @@ $annonces = findAllArticles($pdo);
 
 
 //Message de bienvenue pour tous les utilisateurs non connecté
-if (!isset($_SESSION)) {
+if (!isset($_SESSION['username'])) {
     echo ("<a href='login.php'>Connectez-vous</a>");
 }
 // Je comprends pas pourquoi il se montre toujours alors que lui dit bien de ce montré que quand on est connecté en session
