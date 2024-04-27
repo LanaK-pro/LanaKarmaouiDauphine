@@ -33,11 +33,20 @@ function configPdo(PDO $pdo): void
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 }
 
-// fonction pour trouver tous les articles a montré sur la page d'acceuil
+// fonction pour trouver les trois derniers articles sur l'index
+
+function findAllArticlesIndex(PDO $pdo): array
+{
+    $reponse = $pdo->query('SELECT * FROM annonce ORDER BY datePublication DESC LIMIT 3');
+    // Plusieurs resultat fetchAll
+    return $reponse->fetchAll();
+}
+
+//Pour montré tous les articles 
 
 function findAllArticles(PDO $pdo): array
 {
-    $reponse = $pdo->query('SELECT * FROM annonce ORDER BY datePublication DESC LIMIT 3');
+    $reponse = $pdo->query('SELECT * FROM annonce ORDER BY datePublication DESC');
     // Plusieurs resultat fetchAll
     return $reponse->fetchAll();
 }

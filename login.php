@@ -32,16 +32,19 @@
 
         // Chercher l'utilisateur 
 
-        $response = $pdo->prepare("SELECT username, password FROM utilisateur WHERE username = :username AND password = :password");
+        $response = $pdo->prepare("SELECT password FROM utilisateur WHERE username = :username");
         $response->execute([
             ":username" => $_POST["username"],
-            ":password" => $_POST["password"]
         ]);
+
+        //echo $_POST['username'];
+        //echo password_hash($_POST['password'], PASSWORD_DEFAULT);
+        //echo $_POST['password'];
 
         //Je recupère le resultat ou l'erreur
         $user = $response->fetch();
 
-        if ($user !== false) {
+        if (password_verify($_POST["password"], $user["password"])) {
             //Connexion réussie
             session_start();
             $_SESSION["username"] = $_POST["username"];

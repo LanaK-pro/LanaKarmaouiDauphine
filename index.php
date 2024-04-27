@@ -24,38 +24,42 @@ $passHash = password_hash("bove123", PASSWORD_DEFAULT);
 
 $title = "derniers articles";
 $pdo = connectDB();
-$annonces = findAllArticles($pdo);
+$annonces = findAllArticlesIndex($pdo);
 
 
 //Message de bienvenue pour tous les utilisateurs non connecté
 if (!isset($_SESSION['username'])) {
-    echo ("<a href='login.php'>Connectez-vous</a>");
+    echo ("<a class='btn btn-primary' href='login.php'>Connectez-vous</a>");
 }
 // Je comprends pas pourquoi il se montre toujours alors que lui dit bien de ce montré que quand on est connecté en session
-
-
-// Lien de deconnexion, et création d'article accessible que lorsque l'utilisateur jose (admin) est connecté
-// Accées aux page de suppression et publication d'article uniquement accessible avec la session Jose, et en methode POST
-if ($_SESSION['username'] = 'jose') {
-    echo ("<h2>Vous êtes connecté en tant que" . " " . $_SESSION['username'] . "</h2>");
-    echo "<form action='http://localhost:8888/php-procedural/exam/admin/addArticle.php' method='post'>
+else {
+    // Lien de deconnexion, et création d'article accessible que lorsque l'utilisateur jose (admin) est connecté
+    // Accées aux page de suppression et publication d'article uniquement accessible avec la session Jose, et en methode POST
+    if ($_SESSION['username'] == 'jose') {
+        echo ("<h2>Vous êtes connecté en tant que" . " " . $_SESSION['username'] . "</h2>");
+        echo "<form action='http://localhost:8888/php-procedural/exam/admin/addArticle.php' method='post'>
     <input type='hidden' name='data' value='your_data'>
      <button  class='btn btn-primary my-3 ' type='submit'>Crée un article</button>
     </form>";
-    echo "<form action='http://localhost:8888/php-procedural/exam/admin/modifyArticleForm.php' method='post'>
+        echo "<form action='http://localhost:8888/php-procedural/exam/admin/modifyArticleForm.php' method='post'>
         <input type='hidden' name='data' value='your_data'>
          <button  class='btn btn-secondary my-3 ' type='submit'>Modifié un article</button>
         </form>";
-    echo "<form action='http://localhost:8888/php-procedural/exam/admin/deleteArticle.php' method='post'>
+        echo "<form action='http://localhost:8888/php-procedural/exam/admin/deleteArticle.php' method='post'>
         <input type='hidden' name='data' value='your_data'>
          <button  class='btn btn-danger my-3 ' type='submit'>Supprimé un article</button>
         </form>";
-    echo "<form action='http://localhost:8888/php-procedural/exam/logout.php' method='post'>
+        echo "<form action='http://localhost:8888/php-procedural/exam/logout.php' method='post'>
         <input type='hidden' name='data' value='your_data'>
          <button  class='btn btn-secondary my-3 ' type='submit'>Déconnexion</button>
         </form>";
+    }
 }
+
+
 ?>
+
+
 
 <div class="container">
 
@@ -81,6 +85,10 @@ if ($_SESSION['username'] = 'jose') {
         ?>
     </div>
 
+</div>
+
+<div class="alert alert-primary" role="alert">
+    <a href="http://localhost:8888/php-procedural/exam/articlePage.php">Tous les articles</a>
 </div>
 
 
