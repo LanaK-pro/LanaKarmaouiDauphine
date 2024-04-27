@@ -32,3 +32,12 @@ function configPdo(PDO $pdo): void
     // Choisir les indices dans les fetchs
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 }
+
+// fonction pour trouver tous les articles a montré sur la page d'acceuil
+
+function findAllArticles(PDO $pdo): array
+{
+    $reponse = $pdo->query('SELECT * FROM annonce ORDER BY datePublication DESC LIMIT 3');
+    // Plusieurs resultat fetchAll
+    return $reponse->fetchAll();
+}

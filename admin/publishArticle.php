@@ -12,7 +12,12 @@
     <body>
 
         <?php
+        // site non accessible en methode GET pour des raisons de sécurité
+        if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+            header("Location: http://localhost:8888/php-procedural/exam/");
+        }
         include_once("../utils/databaseManager.php");
+
 
         $pdo = connectDB();
         // Va lancer la procedure juste si le formulaire est rempli
@@ -35,7 +40,7 @@
                 ];
                 $stmt->execute($params);
 
-                echo "Article publiée";
+                echo "Article publiée, retour a <a href='http://localhost:8888/php-procedural/exam/index.php'>l'index</a> ? ";
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
